@@ -20,6 +20,7 @@ const SingleProduct = ({ prod }) => {
             ) : (
               <div>4 days delivery</div>
             )}
+            <Rating rating={prod.ratings} />
           </Card.Subtitle>
           {
             // some() helps to check if the item is in the array
@@ -49,7 +50,6 @@ const SingleProduct = ({ prod }) => {
               </Button>
             )
           }
-          <Rating rating={prod.ratings} />
         </Card.Body>
       </Card>
     </div>

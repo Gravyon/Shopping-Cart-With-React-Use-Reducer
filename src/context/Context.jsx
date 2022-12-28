@@ -1,6 +1,6 @@
 import { createContext, useReducer, useContext } from "react";
 import faker from "faker";
-import { cartReducer } from "./Reducers";
+import { cartReducer, productReducer } from "./Reducers";
 
 const Cart = createContext();
 //  Prevents data from chaging everytime this data is called
@@ -22,8 +22,18 @@ const Context = ({ children }) => {
     cart: [],
   });
 
-  // console.log(products);
-  return <Cart.Provider value={{ state, dispatch }}>{children}</Cart.Provider>;
+  const [productState, productDispatch] = useReducer(productReducer, {
+    byStock: false,
+    byFastDelivery: false,
+    byRating: 0,
+    searchQuery: "",
+  });
+
+  return (
+    <Cart.Provider value={{ state, dispatch, productState, productDispatch }}>
+      {children}
+    </Cart.Provider>
+  );
 };
 
 export default Context;
