@@ -3,6 +3,8 @@ import faker from "faker";
 import { cartReducer } from "./Reducers";
 
 const Cart = createContext();
+//  Prevents data from chaging everytime this data is called
+faker.seed(99);
 
 const Context = ({ children }) => {
   const products = [...Array(20)].map(() => ({
