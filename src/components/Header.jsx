@@ -18,6 +18,7 @@ const Header = () => {
     dispatch,
     productDispatch,
   } = CartState();
+
   return (
     <div>
       <Navbar bg="dark" variant="dark" style={{ height: 80 }}>
@@ -47,8 +48,8 @@ const Header = () => {
               <Dropdown.Menu style={{ maxWidth: 370 }}>
                 {cart.length > 0 ? (
                   <>
-                    {cart.map((prod) => {
-                      <span>
+                    {cart.map((prod) => (
+                      <span className="cartitem" key={prod.id}>
                         <img
                           src={prod.image}
                           className="cartItemImg"
@@ -56,7 +57,7 @@ const Header = () => {
                         />
                         <div className="cartItemDetail">
                           <span>{prod.name}</span>
-                          <span>{prod.price.split(".")[0]}</span>
+                          <span>₹ {prod.price.split(".")[0]}</span>
                         </div>
                         <AiFillDelete
                           fontSize="20px"
@@ -68,8 +69,8 @@ const Header = () => {
                             })
                           }
                         />
-                      </span>;
-                    })}
+                      </span>
+                    ))}
                     <Link to="/cart">
                       <Button style={{ width: "95%", margin: "0 10px" }}>
                         Go to cart
